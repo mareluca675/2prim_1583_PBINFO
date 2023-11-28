@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int n, a, i, j, primi = 0;
+bool prim[101] = {0};
+
+int main()
+{
+    ifstream fin("2prim.in");
+    ofstream fout("2prim.out");
+    
+    prim[0] = 1;
+    prim[1] = 1;
+    
+    for(i = 2; i <= 100; i ++)
+    {
+        if(prim[i] == 0)
+        {
+            for(j = 2; i * j <= 100; j ++)
+            {
+                prim[i * j] = 1;
+            }
+        }
+    }
+    
+    fin >> n;
+    
+    for(i = 1; i <= n; i ++)
+    {
+        fin >> a;
+        
+        if(prim[(a % 100)] == 0)
+        {
+            primi ++;
+        }
+    }
+    
+    fout << primi;
+
+    return 0;
+}
